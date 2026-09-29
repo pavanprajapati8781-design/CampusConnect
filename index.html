@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>CampusConnect | One Campus. One App.</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏫
+        </div>
+
+        <div>
+
+            <h1>
+                CampusConnect
+            </h1>
+
+            <span>
+                Smart Campus Platform
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        MAIN
+    </div>
+
+    <div class="nav">
+
+        <button class="nav-btn active"
+                data-view="dashboard">
+            🏠 Dashboard
+        </button>
+
+        <button class="nav-btn"
+                data-view="maintenance">
+            🛠️ Maintenance
+        </button>
+
+        <button class="nav-btn"
+                data-view="marketplace">
+            🛍️ Marketplace
+        </button>
+
+        <button class="nav-btn"
+                data-view="lostfound">
+            🔎 Lost & Found
+        </button>
+
+        <button class="nav-btn"
+                data-view="events">
+            🎉 Campus Events
+        </button>
+
+        <button class="nav-btn"
+                data-view="opportunities">
+            💼 Opportunities
+        </button>
+
+
+        <div class="nav-title">
+            MANAGEMENT
+        </div>
+
+
+        <button class="nav-btn staff-only"
+                data-view="admin">
+            👨‍💼 Admin Dashboard
+        </button>
+
+
+        <button class="nav-btn"
+                data-view="profile">
+            👤 Profile
+        </button>
+
+
+        <button class="nav-btn"
+                data-view="future">
+            🚀 Product Roadmap
+        </button>
+
+    </div>
+
+
+    <div class="role-box">
+
+        <small>
+            Demo Role
+        </small>
+
+        <select
+            id="roleSelect"
+            class="role-select">
+
+            <option value="student">
+                Student
+            </option>
+
+            <option value="staff">
+                Staff / Admin
+            </option>
+
+        </select>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+    <div style="display:flex;align-items:center;gap:12px">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu">
+            ☰
+        </button>
+
+        <div class="page-heading">
+
+            <h2 id="pageTitle">
+                Student Dashboard
+            </h2>
+
+            <p>
+                One campus. One app. Less friction.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="icon-button"
+            id="notificationButton">
+
+            🔔
+
+            <span
+                class="notification-count"
+                id="notificationCount">
+                0
+            </span>
+
+        </button>
+
+
+        <div class="avatar">
+            PS
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     NOTIFICATION PANEL
+========================================================= -->
+
+<div
+    class="notification-panel"
+    id="notificationPanel">
+
+    <div class="card-header">
+
+        <h3>
+            Notifications
+        </h3>
+
+        <button
+            class="btn btn-small btn-light"
+            onclick="clearNotifications()">
+
+            Clear
+
+        </button>
+
+    </div>
+
+    <div id="notificationList"></div>
+
+</div>
+
+
+
+<section class="content">
+
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<div
+    class="view active"
+    id="dashboard">
+
+
+    <div class="hero">
+
+        <h1>
+            One campus. One app. Less friction.
+        </h1>
+
+        <p>
+            CampusConnect connects students with campus
+            services, opportunities, events and institutional
+            operations through one digital platform.
+        </p>
+
+
+        <div class="hero-actions">
+
+            <button
+                class="btn btn-orange"
+                onclick="showView('maintenance')">
+
+                🛠️ Report Problem
+
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="showView('marketplace')">
+
+                🛍️ Explore Marketplace
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <span>
+                    My Tickets
+                </span>
+
+                <div class="stat-icon">
+                    🎫
+                </div>
+
+            </div>
+
+            <h2 id="dashTickets">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <span>
+                    Marketplace
+                </span>
+
+                <div class="stat-icon">
+                    🛍️
+                </div>
+
+            </div>
+
+            <h2 id="dashListings">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <span>
+                    Events
+                </span>
+
+                <div class="stat-icon">
+                    🎉
+                </div>
+
+            </div>
+
+            <h2 id="dashEvents">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <span>
+                    Opportunities
+                </span>
+
+                <div class="stat-icon">
+                    💼
+                </div>
+
+            </div>
+
+            <h2 id="dashOpportunities">
+                0
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Recent Activity
+                    </h3>
+
+                    <p>
+                        Your latest campus activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="recentActivity">
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        CampusConnect Workflow
+                    </h3>
+
+                    <p>
+                        From problem to resolution
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <h4>
+                        1. Report
+                    </h4>
+
+                    <p>
+                        Student submits a campus problem.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <h4>
+                        2. Connect
+                    </h4>
+
+                    <p>
+                        Platform creates a structured record.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <h4>
+                        3. Update
+                    </h4>
+
+                    <p>
+                        Staff or campus users take action.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <h4>
+                        4. Track
+                    </h4>
+
+                    <p>
+                        Student sees progress and outcome.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MAINTENANCE
+========================================================= -->
+
+<div
+    class="view"
+    id="maintenance">
+
+
+    <div class="hero">
+
+        <h1>
+            Smart Hostel Maintenance
+        </h1>
+
+        <p>
+            Report, track and resolve campus problems
+            without unnecessary follow-ups.
+        </p>
+
+    </div>
+
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Report a Problem
+                    </h3>
+
+                    <p>
+                        Create a trackable complaint.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="maintenanceForm">
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select
+                            id="mCategory"
+                            required>
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>
+                                Electrical
+                            </option>
+
+                            <option>
+                                Plumbing
+                            </option>
+
+                            <option>
+                                Wi-Fi / Internet
+                            </option>
+
+                            <option>
+                                Room / Furniture
+                            </option>
+
+                            <option>
+                                Cleaning
+                            </option>
+
+                            <option>
+                                Water Supply
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            id="mLocation"
+                            placeholder="Hostel, Room 204"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Priority
+                        </label>
+
+                        <select id="mPriority">
+
+                            <option>
+                                Low
+                            </option>
+
+                            <option selected>
+                                Medium
+                            </option>
+
+                            <option>
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Student
+                        </label>
+
+                        <input
+                            id="mStudent"
+                            value="Pratham Sao">
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="mDescription"
+                            placeholder="Describe the issue..."
+                            required>
+                        </textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    style="margin-top:15px">
+
+                    Submit Complaint
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        My Maintenance Tickets
+                    </h3>
+
+                    <p>
+                        Track resolution progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="maintenanceTickets">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MARKETPLACE
+========================================================= -->
+
+<div
+    class="view"
+    id="marketplace">
+
+
+    <div class="hero">
+
+        <h1>
+            Student Marketplace
+        </h1>
+
+        <p>
+            Buy, sell and exchange useful items within
+            the campus community.
+        </p>
+
+        <div class="hero-actions">
+
+            <button
+                class="btn btn-orange"
+                onclick="openModal('listingModal')">
+
+                + Create Listing
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card"
+         style="margin-bottom:18px">
+
+
+        <div class="filters">
+
+            <input
+                id="marketSearch"
+                placeholder="Search books, electronics, furniture...">
+
+
+            <select id="marketCategory">
+
+                <option value="All">
+                    All Categories
+                </option>
+
+                <option>
+                    Books
+                </option>
+
+                <option>
+                    Electronics
+                </option>
+
+                <option>
+                    Furniture
+                </option>
+
+                <option>
+                    Study Material
+                </option>
+
+                <option>
+                    Others
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="market-grid"
+        id="marketGrid">
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     LOST AND FOUND
+========================================================= -->
+
+<div
+    class="view"
+    id="lostfound">
+
+
+    <div class="hero">
+
+        <h1>
+            Lost & Found
+        </h1>
+
+        <p>
+            Help students reconnect with lost belongings
+            across campus.
+        </p>
+
+        <div class="hero-actions">
+
+            <button
+                class="btn btn-orange"
+                onclick="openModal('lostModal')">
+
+                + Report Item
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card"
+         style="margin-bottom:18px">
+
+        <div class="filters">
+
+            <input
+                id="lostSearch"
+                placeholder="Search lost or found items...">
+
+            <select id="lostType">
+
+                <option value="All">
+                    All
+                </option>
+
+                <option>
+                    Lost
+                </option>
+
+                <option>
+                    Found
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="lost-grid"
+        id="lostGrid">
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<div
+    class="view"
+    id="events">
+
+
+    <div class="hero">
+
+        <h1>
+            Campus Events
+        </h1>
+
+        <p>
+            Discover workshops, cultural events,
+            competitions and campus activities.
+        </p>
+
+        <div class="hero-actions">
+
+            <button
+                class="btn btn-orange"
+                onclick="openModal('eventModal')">
+
+                + Create Event
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="event-grid"
+        id="eventGrid">
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     OPPORTUNITIES
+========================================================= -->
+
+<div
+    class="view"
+    id="opportunities">
+
+
+    <div class="hero">
+
+        <h1>
+            Internship & Hackathon Board
+        </h1>
+
+        <p>
+            Discover opportunities that help students
+            learn, build and grow.
+        </p>
+
+    </div>
+
+
+    <div class="filters">
+
+        <input
+            id="oppSearch"
+            placeholder="Search internship or hackathon...">
+
+
+        <select id="oppType">
+
+            <option value="All">
+                All Opportunities
+            </option>
+
+            <option>
+                Internship
+            </option>
+
+            <option>
+                Hackathon
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div
+        class="opportunity-grid"
+        id="opportunityGrid">
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ADMIN
+========================================================= -->
+
+<div
+    class="view"
+    id="admin">
+
+
+    <div class="hero">
+
+        <h1>
+            Institution Operations Dashboard
+        </h1>
+
+        <p>
+            Centralized visibility for complaints,
+            campus activity and platform operations.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Total Tickets</span>
+                <div class="stat-icon">🎫</div>
+            </div>
+
+            <h2 id="adminTickets">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Marketplace</span>
+                <div class="stat-icon">🛍️</div>
+            </div>
+
+            <h2 id="adminListings">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Events</span>
+                <div class="stat-icon">🎉</div>
+            </div>
+
+            <h2 id="adminEvents">
+                0
+            </h2>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Opportunities</span>
+                <div class="stat-icon">💼</div>
+            </div>
+
+            <h2 id="adminOpportunities">
+                0
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Maintenance Operations
+                </h3>
+
+                <p>
+                    Manage the complaint lifecycle.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="kanban">
+
+            <div class="kanban-column">
+
+                <h4>
+                    🟦 Assigned
+                </h4>
+
+                <div id="assignedTickets"></div>
+
+            </div>
+
+
+            <div class="kanban-column">
+
+                <h4>
+                    🟨 In Progress
+                </h4>
+
+                <div id="progressTickets"></div>
+
+            </div>
+
+
+            <div class="kanban-column">
+
+                <h4>
+                    🟩 Resolved
+                </h4>
+
+                <div id="resolvedTickets"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="grid-2"
+        style="margin-top:18px">
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    Complaint Categories
+                </h3>
+
+            </div>
+
+            <div
+                id="categoryAnalytics">
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    Platform Overview
+                </h3>
+
+            </div>
+
+            <div
+                id="platformAnalytics">
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PROFILE
+========================================================= -->
+
+<div
+    class="view"
+    id="profile">
+
+
+    <div class="grid-2">
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Student Profile
+                    </h3>
+
+                    <p>
+                        Manage your CampusConnect identity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        id="profileName"
+                        value="Pratham Sao">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Student ID
+                    </label>
+
+                    <input
+                        value="BCAN1CA25097">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Hostel
+                    </label>
+
+                    <input
+                        value="Shantiniketan">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room
+                    </label>
+
+                    <input
+                        value="422">
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:15px"
+                onclick="saveProfile()">
+
+                Save Profile
+
+            </button>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        My Activity
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="profileActivity">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FUTURE ROADMAP
+========================================================= -->
+
+<div
+    class="view"
+    id="future">
+
+
+    <div class="hero">
+
+        <h1>
+            From a maintenance ticket to a campus operating layer.
+        </h1>
+
+        <p>
+            Start narrow, validate locally, then expand
+            CampusConnect across the campus ecosystem.
+        </p>
+
+    </div>
+
+
+    <div class="grid-3">
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                🛠️
+            </div>
+
+            <h4>
+                Phase 1 — Smart Maintenance
+            </h4>
+
+            <p>
+                Structured complaints, ticket IDs,
+                status tracking and staff visibility.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                🛍️
+            </div>
+
+            <h4>
+                Phase 2 — Marketplace
+            </h4>
+
+            <p>
+                Student-to-student listings and
+                campus transactions.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                🔎
+            </div>
+
+            <h4>
+                Phase 2 — Lost & Found
+            </h4>
+
+            <p>
+                Digital reporting and recovery
+                workflow for campus belongings.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                🎉
+            </div>
+
+            <h4>
+                Phase 3 — Campus Events
+            </h4>
+
+            <p>
+                Discover and participate in
+                campus activities.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                💼
+            </div>
+
+            <h4>
+                Phase 3 — Opportunities
+            </h4>
+
+            <p>
+                Internships, hackathons and
+                student opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h4>
+                Institutional Intelligence
+            </h4>
+
+            <p>
+                Analytics and operational insights
+                for campus administration.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+</div>
+
+
+
+<!-- =========================================================
+     MODALS
+========================================================= -->
+
+
+<!-- MARKETPLACE LISTING -->
+
+<div
+    class="modal"
+    id="listingModal">
+
+    <div class="modal-content">
+
+        <div class="modal-head">
+
+            <h3>
+                Create Marketplace Listing
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('listingModal')">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="listingForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Item Name
+                    </label>
+
+                    <input
+                        id="pName"
+                        placeholder="Engineering Mathematics Book"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Price
+                    </label>
+
+                    <input
+                        id="pPrice"
+                        type="number"
+                        placeholder="500"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="pCategory">
+
+                        <option>
+                            Books
+                        </option>
+
+                        <option>
+                            Electronics
+                        </option>
+
+                        <option>
+                            Furniture
+                        </option>
+
+                        <option>
+                            Study Material
+                        </option>
+
+                        <option>
+                            Others
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Condition
+                    </label>
+
+                    <select id="pCondition">
+
+                        <option>
+                            New
+                        </option>
+
+                        <option selected>
+                            Good
+                        </option>
+
+                        <option>
+                            Used
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="pDescription"
+                        placeholder="Describe your item...">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:15px">
+
+                Publish Listing
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- LOST FOUND MODAL -->
+
+<div
+    class="modal"
+    id="lostModal">
+
+    <div class="modal-content">
+
+        <div class="modal-head">
+
+            <h3>
+                Report Lost / Found Item
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('lostModal')">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="lostForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Type
+                    </label>
+
+                    <select id="lType">
+
+                        <option>
+                            Lost
+                        </option>
+
+                        <option>
+                            Found
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Item
+                    </label>
+
+                    <input
+                        id="lItem"
+                        placeholder="Black Wallet"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        id="lLocation"
+                        placeholder="Library"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        id="lDate"
+                        type="date"
+                        required>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="lDescription"
+                        placeholder="Describe the item...">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:15px">
+
+                Publish Report
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- EVENT MODAL -->
+
+<div
+    class="modal"
+    id="eventModal">
+
+    <div class="modal-content">
+
+        <div class="modal-head">
+
+            <h3>
+                Create Campus Event
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('eventModal')">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="eventForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Event Name
+                    </label>
+
+                    <input
+                        id="eName"
+                        placeholder="Hackathon 2026"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        id="eDate"
+                        type="date"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Venue
+                    </label>
+
+                    <input
+                        id="eVenue"
+                        placeholder="Seminar Hall"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Organizer
+                    </label>
+
+                    <input
+                        id="eOrganizer"
+                        placeholder="Coding Club">
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="eDescription">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:15px">
+
+                Publish Event
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- TICKET MODAL -->
+
+<div
+    class="modal"
+    id="ticketModal">
+
+    <div class="modal-content">
+
+        <div class="modal-head">
+
+            <h3 id="ticketModalTitle">
+                Ticket Details
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('ticketModal')">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="ticketModalBody">
+        </div>
+
+    </div>
+
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
